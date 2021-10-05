@@ -63,10 +63,12 @@ public class CanvasManager : MonoBehaviour {
 		m_manager.ResumeGame();
 	}
 
-	public void SetAmmo(float value)
+	public void UpdateAmmoDisplay(int value, int max)
 	{
-		//adjust slider value
-		m_ammoSlider.value = value;
+		//NOTE: cast is redundant, but dividing integers doesn't work out
+		float sliderValue = (float)value / (float)max;
+		//Debug.Log($"Updating ammo display to: {sliderValue}");
+		m_ammoSlider.value = sliderValue;
 	}
 		
 	public void SetHealth(float value, float damage)
