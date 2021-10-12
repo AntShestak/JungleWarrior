@@ -42,10 +42,12 @@ public class WeaponSelect : MonoBehaviour
         switch (weapon)
         {
             case Weapon.Blaster:
+                m_currentWeapon = weapon;
                 ActivateWeapon(1);
                 break;
                 
             default:
+                m_currentWeapon = weapon;
                 ActivateWeapon(0);
                 break;
         }
@@ -56,6 +58,7 @@ public class WeaponSelect : MonoBehaviour
     {
         Debug.Log($"Activating weapon at index {index}", this);
         DeactivateAllWeapons();
+        
         m_weapons[index].SetActive(true);
         m_player.SetWeapon(m_weapons[index].GetComponent<IWeapon>());
     }
