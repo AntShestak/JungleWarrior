@@ -5,7 +5,6 @@ using UnityEngine;
 public interface IWeapon
 {
     public int Ammo { get; set; }
-
     public void Shoot();
 
     public void AddAmmo(int toAdd);

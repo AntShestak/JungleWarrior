@@ -24,6 +24,7 @@ public class Blaster : MonoBehaviour, IWeapon
     private CanvasManager _canvas;
     private GunAudio _audio;
     private Animator _anim;
+   
     private bool _canShoot = true;
 
 
