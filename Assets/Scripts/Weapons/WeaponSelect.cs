@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponSelect : MonoBehaviour
 {
-    public enum Weapon { Pistol, Blaster }
+    public enum Weapon { Pistol, GrenadeLauncher }
 
     //[SerializeField] GameObject m_weapon1;
     //[SerializeField] GameObject m_weapon2;
@@ -32,7 +32,7 @@ public class WeaponSelect : MonoBehaviour
         if (Input.GetButtonDown("Weapon1"))
             SelectWeapon(Weapon.Pistol);
         else if (Input.GetButtonDown("Weapon2"))
-            SelectWeapon(Weapon.Blaster);
+            SelectWeapon(Weapon.GrenadeLauncher);
     }
 
     private void SelectWeapon(Weapon weapon)
@@ -41,7 +41,7 @@ public class WeaponSelect : MonoBehaviour
 
         switch (weapon)
         {
-            case Weapon.Blaster:
+            case Weapon.GrenadeLauncher:
                 m_currentWeapon = weapon;
                 ActivateWeapon(1);
                 break;
