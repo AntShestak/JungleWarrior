@@ -25580,7 +25580,7 @@ MonoBehaviour:
   _bulletSpawn: {fileID: 467004866848729510}
   _gunTransform: {fileID: 467004867511409499}
   _maxAmmo: 100
-  _shotCost: 1
+  _shotCost: 20
   _reloadSeconds: 1
   _blasterRechargeRate: 1
 --- !u!4 &467004867511409499 stripped
