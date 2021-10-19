@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponSelect : MonoBehaviour
 {
-    public enum Weapon { Pistol, GrenadeLauncher }
+    public enum WeaponType { Pistol, GrenadeLauncher }
 
     //[SerializeField] GameObject m_weapon1;
     //[SerializeField] GameObject m_weapon2;
@@ -13,7 +13,7 @@ public class WeaponSelect : MonoBehaviour
 
     PlayerScript m_player;
 
-    private Weapon m_currentWeapon = Weapon.Pistol;
+    private WeaponType m_currentWeapon = WeaponType.Pistol;
 
     private void Awake()
     {
@@ -24,24 +24,25 @@ public class WeaponSelect : MonoBehaviour
     void Start()
     {
         Debug.Log($"Weaponse array length {m_weapons.Length}", this);
+        ActivateWeapon(0);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Weapon1"))
-            SelectWeapon(Weapon.Pistol);
+            SelectWeapon(WeaponType.Pistol);
         else if (Input.GetButtonDown("Weapon2"))
-            SelectWeapon(Weapon.GrenadeLauncher);
+            SelectWeapon(WeaponType.GrenadeLauncher);
     }
 
-    private void SelectWeapon(Weapon weapon)
+    private void SelectWeapon(WeaponType weapon)
     {
         if (weapon == m_currentWeapon) return;
 
         switch (weapon)
         {
-            case Weapon.GrenadeLauncher:
+            case WeaponType.GrenadeLauncher:
                 m_currentWeapon = weapon;
                 ActivateWeapon(1);
                 break;
@@ -58,9 +59,10 @@ public class WeaponSelect : MonoBehaviour
     {
         Debug.Log($"Activating weapon at index {index}", this);
         DeactivateAllWeapons();
-        
+
+        //IWeapon weaponInterface = m_weapons[index].GetComponent<IWeapon>();
         m_weapons[index].SetActive(true);
-        m_player.SetWeapon(m_weapons[index].GetComponent<IWeapon>());
+        m_player.SetWeapon(m_weapons[index].GetComponent<Weapon>());
     }
 
     private void DeactivateAllWeapons()
