@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 573580584665020285}
   - component: {fileID: 573580584666117565}
   - component: {fileID: 7402104056088793128}
-  - component: {fileID: 1745261538779436602}
-  - component: {fileID: 1120644792093746169}
+  - component: {fileID: 467004867511240572}
   m_Layer: 8
   m_Name: GrenadeLauncher
   m_TagString: Untagged
@@ -30,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 573580584668310397}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.303, y: 0.67, z: 0.276}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 573580585615771040}
   m_Father: {fileID: 0}
@@ -99,9 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_gunAudio: {fileID: 0}
-  m_shootAudio: {fileID: 8300000, guid: 139cdb326f1d2c746818cfc166aa9571, type: 3}
+  m_shootAudio: {fileID: 8300000, guid: 2fe490fb8c3d2514c97229ce9392de8a, type: 3}
   m_shootFailed: {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
---- !u!114 &1745261538779436602
+--- !u!114 &467004867511240572
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,36 +109,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 573580584668310397}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42beaf474f9b8da419278b3590098293, type: 3}
+  m_Script: {fileID: 11500000, guid: 49979e0ea59df7542b1eddc05742ed89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 1565463116352944, guid: efb63c84205e99c438f9525018faafbe,
+  m_projectile: {fileID: 4436433911906461953, guid: fb46af6d6e88df64bb7ab69cf11ac47f,
     type: 3}
-  _bulletSpawn: {fileID: 573580585615771040}
-  _gunTransform: {fileID: 573580584667887453}
-  _maxAmmo: 100
-  _shotCost: 10
-  _reloadSeconds: 1
-  _blasterRechargeRate: 1
---- !u!95 &1120644792093746169
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573580584668310397}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f7f0a81bc670d4a4bb644f538b115144, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_bulletSpawn: {fileID: 573580585615771040}
+  m_gunTransform: {fileID: 573580584667887453}
+  m_maxAmmo: 100
+  m_shotCost: 10
+  m_reloadSeconds: 1
+  m_blasterRechargeRate: 1
 --- !u!1 &573580585615771041
 GameObject:
   m_ObjectHideFlags: 0

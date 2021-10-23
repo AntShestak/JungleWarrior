@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour
     /// </summary>
     /// 
 
+    public enum WeaponType { Primary = 0, Secondary };
+
     public int Ammo { get; set; }
 
 
@@ -24,6 +26,8 @@ public class Weapon : MonoBehaviour
     //not every weapon recharges (but they do for now)
     [SerializeField] private int m_blasterRechargeRate = 1; //per second
 
+    protected string m_weaponName;
+    protected WeaponType m_type;
     private CanvasManager m_canvas;
     private GunAudio m_audio;
     private Animator m_anim;
@@ -37,13 +41,15 @@ public class Weapon : MonoBehaviour
 
         m_audio = GetComponent<GunAudio>();
 
-        m_anim = GetComponent<Animator>();
+        m_anim = GetComponentInParent<Animator>();
     }
     private void Start()
     {
         Ammo = m_maxAmmo;
 
         StartCoroutine("RegenerateAmmoCoroutine");
+
+        SetName();
 
     }
 
@@ -82,13 +88,31 @@ public class Weapon : MonoBehaviour
     }
 
 
+    protected virtual void SetName()
+    {
+        m_weaponName = "Pistol";
+    }
+
+    public virtual void Equip()
+    {
+        //this.gameObject.SetActive(true);
+        //IEnumerator equipCoroutine = EquipCoroutine();
+        //StartCoroutine(equipCoroutine);
+    }
+
+    public virtual void Unequip()
+    {
+        m_anim.SetTrigger(m_weaponName + "Unequip");
+
+    }
+
     //simple coroutine that shoots a bullet and controls fire rate
     protected virtual IEnumerator ShootCoroutine()
     {
 
         Instantiate(m_projectile, m_bulletSpawn.position, m_gunTransform.rotation);
         DeductAmmo(m_shotCost);
-        m_anim.SetTrigger("Shoot");
+        m_anim.SetTrigger(m_weaponName + "Shot");
         m_audio.PlayShootAudio(); //play sound
         yield return new WaitForSeconds(m_reloadSeconds);
         m_canShoot = true;
@@ -110,15 +134,21 @@ public class Weapon : MonoBehaviour
 
     }
 
-    public virtual void Equip()
+    public WeaponType GetType()
     {
-        this.gameObject.SetActive(true);
-        m_anim.SetTrigger("Equip");
+        return m_type;
     }
 
-    public virtual void Unequip()
-    {
-        m_anim.SetTrigger("Unequip");
-
-    }
+    //protected virtual IEnumerator EquipCoroutine()
+    //{
+    //    //m_anim.SetTrigger(m_WeaponName + "Equip");
+    //    bool isAnimPlaying = true;
+    //    while (isAnimPlaying)
+    //    {
+    //        yield return 0;
+    //        AnimatorTransitionInfo info = m_anim.GetAnimatorTransitionInfo(0);
+    //        Debug.Log(info.ToString());
+    //        isAnimPlaying = false;
+    //    }
+    //}
 }
