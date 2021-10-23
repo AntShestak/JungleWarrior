@@ -25627,11 +25627,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
-    - target: {fileID: 8720731435930481817, guid: cfd44b8c193695a4184101eccc097163,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8720731436122600222, guid: cfd44b8c193695a4184101eccc097163,
         type: 3}
       propertyPath: m_gunAudio

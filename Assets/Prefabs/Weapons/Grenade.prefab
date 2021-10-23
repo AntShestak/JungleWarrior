@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_explosion: {fileID: 1651552866287585262, guid: bc51b2b09b2e84b43b1855119dc949b0,
     type: 3}
-  m_force: 50
+  m_force: 75
   m_secToExplode: 3
 --- !u!82 &1333740774350706974
 AudioSource:

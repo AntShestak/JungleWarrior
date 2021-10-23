@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GunAudio : MonoBehaviour {
 
-	public AudioSource m_gunAudio; //don't confuse with Player AudioSource component, gun AudioSource is attached to gun
-	public AudioClip m_shootAudio;
-	public AudioClip m_shootFailed;
+	[SerializeField] AudioSource m_gunAudio; //don't confuse with Player AudioSource component, gun AudioSource is attached to gun
+	[SerializeField] AudioClip m_shootAudio;
+	[SerializeField] AudioClip m_shootFailed;
+	[SerializeField] AudioClip m_equip;
+
 
 	public void PlayShootAudio()
 	{
@@ -19,6 +21,12 @@ public class GunAudio : MonoBehaviour {
 	{
 		m_gunAudio.clip = m_shootFailed;
 		//now play it
+		m_gunAudio.Play();
+	}
+
+	public void PlayEquip()
+	{
+		m_gunAudio.clip = m_equip;
 		m_gunAudio.Play();
 	}
 }

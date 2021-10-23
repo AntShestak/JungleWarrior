@@ -103,6 +103,7 @@ public class Weapon : MonoBehaviour
     public virtual void Unequip()
     {
         m_anim.SetTrigger(m_weaponName + "Unequip");
+        m_audio.PlayEquip();
 
     }
 

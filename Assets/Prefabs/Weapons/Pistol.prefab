@@ -138,6 +138,7 @@ MonoBehaviour:
   m_gunAudio: {fileID: 0}
   m_shootAudio: {fileID: 8300000, guid: 139cdb326f1d2c746818cfc166aa9571, type: 3}
   m_shootFailed: {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
+  m_equip: {fileID: 8300000, guid: 8c00ceea847e4e044afed1f9295da632, type: 3}
 --- !u!114 &8720731436122600217
 MonoBehaviour:
   m_ObjectHideFlags: 0
