@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GrenadeLauncher : Weapon
 {
-    
 
-    protected override void SetName()
+
+    protected override void WeaponSetupOnStart()
     {
         m_weaponName = "Secondary";
-        m_type = WeaponType.Secondary;
+        m_type = WeaponType.GrenadeLauncher;
     }
 
 

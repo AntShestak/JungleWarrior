@@ -9,35 +9,46 @@ public class Weapon : MonoBehaviour
     /// </summary>
     /// 
 
-    public enum WeaponType { Primary = 0, Secondary };
+    public enum WeaponType { Pistol, GrenadeLauncher, SniperRiffle };
 
-    public int Ammo { get; set; }
+    private int m_ammo;
+    public int Ammo { 
+        get {
+            return m_ammo;
+        }
+        set {
+            m_ammo = value;
+            if (GUISystem.Instance != null)
+                GUISystem.Instance.UpdateAmmoDisplay(Ammo, m_maxAmmo);
+        } 
+    }
+    public WeaponType Type { 
+        get { return m_type; } 
+    }
 
 
     [SerializeField] private GameObject m_projectile;
-    [SerializeField] private Transform m_bulletSpawn; //projectile spawn point
+    [SerializeField] private Transform m_projectileSpawn; //projectile spawn point
     [SerializeField] private Transform m_gunTransform;
 
-    [SerializeField] private int m_maxAmmo = 100;
-    [SerializeField] private int m_shotCost = 10; //1 shot costs 10% of full charge (by default)
+    [SerializeField] private int m_maxAmmo = 0;
+    [SerializeField] private int m_shotCost = 0; 
 
-    [SerializeField] private float m_reloadSeconds = 1f; //time between shots
-
-    //not every weapon recharges (but they do for now)
-    [SerializeField] private int m_blasterRechargeRate = 1; //per second
+    [SerializeField] protected float m_reloadSeconds = 0f; //time between shots
 
     protected string m_weaponName;
     protected WeaponType m_type;
-    private CanvasManager m_canvas;
-    private GunAudio m_audio;
-    private Animator m_anim;
+    protected Animator m_anim;
+    //private CanvasManager m_canvas;
+    protected GunAudio m_audio;
+    
 
-    private bool m_canShoot = true;
+    protected bool m_canShoot = true;
 
 
     private void Awake()
     {
-        m_canvas = FindObjectOfType<CanvasManager>();
+        //m_canvas = FindObjectOfType<CanvasManager>();
 
         m_audio = GetComponent<GunAudio>();
 
@@ -47,37 +58,51 @@ public class Weapon : MonoBehaviour
     {
         Ammo = m_maxAmmo;
 
-        StartCoroutine("RegenerateAmmoCoroutine");
+        RegenerateAmmo();
 
-        SetName();
+        WeaponSetupOnStart();
 
     }
 
     public virtual void AddAmmo(int toAdd)
     {
+
         Ammo += toAdd;
 
         Ammo = Mathf.Clamp(Ammo, 0, m_maxAmmo);
 
-        m_canvas.UpdateAmmoDisplay(Ammo, m_maxAmmo);
+        GUISystem.Instance.UpdateAmmoDisplay(Ammo, m_maxAmmo);
+
     }
+
+    public virtual void Aim()
+    {
+        
+    }
+
 
     public virtual void DeductAmmo(int toDeduct)
     {
+        //Debug.Log($"Deducting ammo {toDeduct}");
+
         Ammo -= toDeduct;
 
         Ammo = Mathf.Clamp(Ammo, 0, m_maxAmmo);
 
-        m_canvas.UpdateAmmoDisplay(Ammo, m_maxAmmo);
+        GUISystem.Instance.UpdateAmmoDisplay(Ammo, m_maxAmmo);
     }
 
     public virtual void Shoot()
     {
+        
         if (m_canShoot)
         {
             if (Ammo >= m_shotCost)
             {
+                
                 m_canShoot = false;
+                DeductAmmo(m_shotCost);
+
                 IEnumerator shootCoroutine = ShootCoroutine();
                 StartCoroutine(shootCoroutine);
             }
@@ -88,21 +113,28 @@ public class Weapon : MonoBehaviour
     }
 
 
-    protected virtual void SetName()
+    protected virtual void WeaponSetupOnStart()
     {
         m_weaponName = "Pistol";
     }
 
+    protected virtual void RegenerateAmmo()
+    {
+        
+    }
+
     public virtual void Equip()
     {
-        //this.gameObject.SetActive(true);
-        //IEnumerator equipCoroutine = EquipCoroutine();
-        //StartCoroutine(equipCoroutine);
+        if (m_weaponName == "Range" || m_weaponName == "Pistol")
+            m_anim.SetBool(m_weaponName + "Equip", true);
     }
 
     public virtual void Unequip()
     {
-        m_anim.SetTrigger(m_weaponName + "Unequip");
+        if (m_weaponName == "Range" || m_weaponName == "Pistol")
+            m_anim.SetBool(m_weaponName + "Equip", false);
+        else
+            m_anim.SetTrigger(m_weaponName + "Unequip");
         m_audio.PlayEquip();
 
     }
@@ -110,30 +142,16 @@ public class Weapon : MonoBehaviour
     //simple coroutine that shoots a bullet and controls fire rate
     protected virtual IEnumerator ShootCoroutine()
     {
-
-        Instantiate(m_projectile, m_bulletSpawn.position, m_gunTransform.rotation);
-        DeductAmmo(m_shotCost);
+        Debug.Log("Base call");
+        Instantiate(m_projectile, m_projectileSpawn.position, m_gunTransform.rotation);
+        
         m_anim.SetTrigger(m_weaponName + "Shot");
         m_audio.PlayShootAudio(); //play sound
         yield return new WaitForSeconds(m_reloadSeconds);
         m_canShoot = true;
     }
 
-    protected virtual IEnumerator RegenerateAmmoCoroutine()
-    {
-        while (true)
-        {
-            //wait for 1 second
-            yield return new WaitForSeconds(1f);
-            //SORT OUT AMMO FIRST
-            //add to ammo
-            AddAmmo(m_blasterRechargeRate);
-
-
-
-        }
-
-    }
+    
 
     public WeaponType GetType()
     {

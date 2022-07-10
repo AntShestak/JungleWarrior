@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 1651552866287585256}
   - component: {fileID: 1888218474}
   - component: {fileID: 1888218473}
+  - component: {fileID: -7934976786453112297}
+  - component: {fileID: 541493582427089892}
   m_Layer: 0
   m_Name: ExplosionCore
-  m_TagString: Untagged
+  m_TagString: Explosion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4975,6 +4977,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7934976786453112297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651552866287585262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6feec8a40c95aa4fbdd795d5b4849b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  afterSeconds: 20
+--- !u!135 &541493582427089892
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651552866287585262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.75
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1001 &4676223918927999363
 PrefabInstance:
   m_ObjectHideFlags: 0

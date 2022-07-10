@@ -100,5 +100,10 @@ public class SoldierNavigator : MonoBehaviour {
 	{
 		m_agent.speed = m_speed * x ;
 	}
+
+	public void DisableAgent()
+	{
+		m_agent.enabled = false;
+	}
 		
 }

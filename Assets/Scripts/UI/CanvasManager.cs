@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// OLD CODE | REFACTORING REQUIRED
+/// </summary>
+
 public class CanvasManager : MonoBehaviour {
 
-	public GameObject m_panelGUI;
+
+
+	//public GameObject m_panelGUI;
 	public GameObject m_panelPause;
 	public GameObject m_panelGameOver;
 	public GameObject m_panelGameWon;
-	public Slider m_ammoSlider;
-	public Slider m_healthSlider;
+	//public Slider m_ammoSlider;
+	//public Slider m_healthSlider;
 	public Text m_enemies;
 	public Text m_time;
 	//Game Won and Game Lost are different panels
@@ -33,7 +39,7 @@ public class CanvasManager : MonoBehaviour {
 		//set pause panel inactive
 		m_panelPause.SetActive(false);
 		//set GUI panel active
-		m_panelGUI.SetActive(true);
+		//m_panelGUI.SetActive(true);
 		//try to find GameManager script
 		try
 		{
@@ -48,7 +54,7 @@ public class CanvasManager : MonoBehaviour {
 	public void OnPause()
 	{
 		//set GUI panel inactive
-		m_panelGUI.SetActive(false);
+		//m_panelGUI.SetActive(false);
 		//set pause panel inactive
 		m_panelPause.SetActive(true);
 	}
@@ -58,7 +64,7 @@ public class CanvasManager : MonoBehaviour {
 		//set pause panel inactive
 		m_panelPause.SetActive(false);
 		//set GUI panel active
-		m_panelGUI.SetActive(true);
+		//m_panelGUI.SetActive(true);
 		//call gameManager
 		m_manager.ResumeGame();
 	}
@@ -68,13 +74,13 @@ public class CanvasManager : MonoBehaviour {
 		//NOTE: cast is redundant, but dividing integers doesn't work out
 		float sliderValue = (float)value / (float)max;
 		//Debug.Log($"Updating ammo display to: {sliderValue}");
-		m_ammoSlider.value = sliderValue;
+		//m_ammoSlider.value = sliderValue;
 	}
 		
 	public void SetHealth(float value, float damage)
 	{
 		//adjust slider value
-		m_healthSlider.value = value;
+		//m_healthSlider.value = value;
 		//damage 
 		//update bllod image if health is low
 		if (value <= damage) 
@@ -91,7 +97,7 @@ public class CanvasManager : MonoBehaviour {
 	public void GameOver(int current, int high)
 	{
 		//set GUI panel inactive
-		m_panelGUI.SetActive(false);
+		//m_panelGUI.SetActive(false);
 		//activate Game over panel
 		m_panelGameOver.SetActive(true);
 		m_scoreLost.text = current.ToString ();
@@ -101,7 +107,7 @@ public class CanvasManager : MonoBehaviour {
 	public void GameWon(int current, int high)
 	{
 		//set GUI panel inactive
-		m_panelGUI.SetActive(false);
+		//m_panelGUI.SetActive(false);
 		//activate Game Won panel
 		m_panelGameWon.SetActive(true);
 

@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
 	{
 
 		//have to set resolution and force fullscreen mode here as player settings don't work
-		Screen.SetResolution(1680,1050,true);
+		Screen.SetResolution(1920,1080,true);
 
 		//set GameManager object to not to be destroyed on loading new scenes (required in brief)
 		DontDestroyOnLoad (this.gameObject);

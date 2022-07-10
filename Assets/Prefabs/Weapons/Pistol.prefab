@@ -153,9 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_projectile: {fileID: 1565463116352944, guid: efb63c84205e99c438f9525018faafbe,
     type: 3}
-  m_bulletSpawn: {fileID: 8720731435324493171}
+  m_projectileSpawn: {fileID: 8720731435324493171}
   m_gunTransform: {fileID: 8720731435929987257}
   m_maxAmmo: 100
   m_shotCost: 10
   m_reloadSeconds: 1
-  m_blasterRechargeRate: 1

@@ -115,12 +115,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_projectile: {fileID: 4436433911906461953, guid: fb46af6d6e88df64bb7ab69cf11ac47f,
     type: 3}
-  m_bulletSpawn: {fileID: 573580585615771040}
+  m_projectileSpawn: {fileID: 573580585615771040}
   m_gunTransform: {fileID: 573580584667887453}
-  m_maxAmmo: 100
-  m_shotCost: 10
-  m_reloadSeconds: 1
-  m_blasterRechargeRate: 1
+  m_maxAmmo: 4
+  m_shotCost: 1
+  m_reloadSeconds: 2
 --- !u!1 &573580585615771041
 GameObject:
   m_ObjectHideFlags: 0

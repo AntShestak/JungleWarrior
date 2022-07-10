@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Bullet
   - Terra
+  - Explosion
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Enemy
   - Control
   - Terrain
-  - 
+  - Pickable
   - 
   - 
   - 

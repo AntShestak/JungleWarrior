@@ -55,20 +55,26 @@ public class SoldierController : MonoBehaviour
 	{
 		if (other.CompareTag ("Bullet") && !m_dead) //"bullet" is player projectile tag & if dead don't accept collisions
 		{
-			//reduce health
-			m_health -= 1;
-			//check helath
-			if (m_health <= 0)
-				Dead ();
-			else
 				TakeDamage ();
 				
+		}
+		else if (other.CompareTag("Explosion") && !m_dead)
+		{
+			DeadFromExplosion(other.gameObject.transform.position);
 		}
 			
 	}
 
-	void TakeDamage()
+	public void TakeDamage()
 	{
+		//reduce health
+		m_health -= 1;
+		//check helath
+		if (m_health <= 0)
+		{ 
+			Dead();
+			return;
+		}
 		//check if player was already spotted
 		if (!m_found)
 			m_found = true;
@@ -96,6 +102,32 @@ public class SoldierController : MonoBehaviour
 		//report death of the soldier
 		m_control.EnemyDown();
 
+	}
+
+	void DeadFromExplosion(Vector3 explosionPosition)
+	{
+		//set control bool
+		m_dead = true;
+		//sop patrol
+		m_navigator.PatrolStop();
+		//stop all coroutines
+		StopAllCoroutines();
+
+		m_navigator.DisableAgent();
+		Rigidbody rb = GetComponent<Rigidbody>();
+		rb.isKinematic = false;
+		rb.mass = 80f;
+		rb.useGravity = true;
+		GetComponent<Animator>().enabled = false;
+		rb.AddExplosionForce(1000f, explosionPosition, 2.75f);
+
+		//Destroy (this.gameObject);
+		m_audio.Death();
+
+		//set collider to match 
+		Invoke("ChangeHeight", 0.5f);
+		//report death of the soldier
+		m_control.EnemyDown();
 	}
 
 	void ChangeHeight()
@@ -184,7 +216,7 @@ public class SoldierController : MonoBehaviour
 					yield return new WaitForSeconds (1f);
 					//debug
 					bool check = IsVisible();
-					Debug.Log ("Checkc: " + check.ToString ()); 
+					//Debug.Log ("Checkc: " + check.ToString ()); 
 					if (check) 
 					{
 						m_actions.Aiming ();
